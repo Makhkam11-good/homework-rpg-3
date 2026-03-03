@@ -19,7 +19,9 @@ public class Main {
         // TODO: Create heroes and enemies
         Warrior warrior = new Warrior("Arthas");
         Mage mage = new Mage("Jaina");
-        Goblin goblin = new Goblin();
+        Goblin goblin1 = new Goblin();
+        Goblin goblin2 = new Goblin();
+        Goblin goblin3 = new Goblin();
 
         // TODO: Wrap with adapters
         List<Combatant> heroes = new ArrayList<>();
@@ -27,7 +29,9 @@ public class Main {
         heroes.add(new HeroCombatantAdapter(mage));
 
         List<Combatant> enemies = new ArrayList<>();
-        enemies.add(new EnemyCombatantAdapter(goblin));
+        enemies.add(new EnemyCombatantAdapter(goblin1));
+        enemies.add(new EnemyCombatantAdapter(goblin2));
+        enemies.add(new EnemyCombatantAdapter(goblin3));
 
         // TODO: Demonstrate Singleton behavior
         BattleEngine engineA = BattleEngine.getInstance();
