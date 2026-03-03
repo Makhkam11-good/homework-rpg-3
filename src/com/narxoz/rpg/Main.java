@@ -17,16 +17,20 @@ public class Main {
         System.out.println("=== RPG Battle Engine Demo ===\n");
 
         // TODO: Create heroes and enemies
-        Warrior warrior = new Warrior("Arthas");
-        Mage mage = new Mage("Jaina");
+        Warrior warrior1 = new Warrior("Arthas");
+        Warrior warrior2 = new Warrior("Thrall");
+        Mage mage1 = new Mage("Jaina");
+        Mage mage2 = new Mage("Medivh");
         Goblin goblin1 = new Goblin();
         Goblin goblin2 = new Goblin();
         Goblin goblin3 = new Goblin();
 
         // TODO: Wrap with adapters
         List<Combatant> heroes = new ArrayList<>();
-        heroes.add(new HeroCombatantAdapter(warrior));
-        heroes.add(new HeroCombatantAdapter(mage));
+        heroes.add(new HeroCombatantAdapter(warrior1));
+        heroes.add(new HeroCombatantAdapter(warrior2));
+        heroes.add(new HeroCombatantAdapter(mage1));
+        heroes.add(new HeroCombatantAdapter(mage2));
 
         List<Combatant> enemies = new ArrayList<>();
         enemies.add(new EnemyCombatantAdapter(goblin1));
