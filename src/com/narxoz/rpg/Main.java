@@ -53,6 +53,27 @@ public class Main {
             System.out.println(line);
         }
 
+        System.out.println("\n=== Edge Case Test: Hero Death Scenario ===\n");
+
+        Warrior weakWarrior = new Warrior("Arthas");
+        Goblin strongGoblin1 = new Goblin();
+        Goblin strongGoblin2 = new Goblin();
+
+        List<Combatant> singleHero = new ArrayList<>();
+        singleHero.add(new HeroCombatantAdapter(weakWarrior));
+
+        List<Combatant> multipleEnemies = new ArrayList<>();
+        multipleEnemies.add(new EnemyCombatantAdapter(strongGoblin1));
+        multipleEnemies.add(new EnemyCombatantAdapter(strongGoblin2));
+
+        EncounterResult result2 = engineA.runEncounter(singleHero, multipleEnemies);
+
+        System.out.println("Winner: " + result2.getWinner());
+        System.out.println("Rounds: " + result2.getRounds());
+        for (String line : result2.getBattleLog()) {
+            System.out.println(line);
+        }
+
         System.out.println("\n=== Demo Complete ===");
     }
 }
