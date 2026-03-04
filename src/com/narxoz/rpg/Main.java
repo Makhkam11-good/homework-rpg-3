@@ -17,17 +17,25 @@ public class Main {
         System.out.println("=== RPG Battle Engine Demo ===\n");
 
         // TODO: Create heroes and enemies
-        Warrior warrior = new Warrior("Arthas");
-        Mage mage = new Mage("Jaina");
-        Goblin goblin = new Goblin();
+        Warrior warrior1 = new Warrior("Arthas");
+        Warrior warrior2 = new Warrior("Thrall");
+        Mage mage1 = new Mage("Jaina");
+        Mage mage2 = new Mage("Medivh");
+        Goblin goblin1 = new Goblin();
+        Goblin goblin2 = new Goblin();
+        Goblin goblin3 = new Goblin();
 
         // TODO: Wrap with adapters
         List<Combatant> heroes = new ArrayList<>();
-        heroes.add(new HeroCombatantAdapter(warrior));
-        heroes.add(new HeroCombatantAdapter(mage));
+        heroes.add(new HeroCombatantAdapter(warrior1));
+        heroes.add(new HeroCombatantAdapter(warrior2));
+        heroes.add(new HeroCombatantAdapter(mage1));
+        heroes.add(new HeroCombatantAdapter(mage2));
 
         List<Combatant> enemies = new ArrayList<>();
-        enemies.add(new EnemyCombatantAdapter(goblin));
+        enemies.add(new EnemyCombatantAdapter(goblin1));
+        enemies.add(new EnemyCombatantAdapter(goblin2));
+        enemies.add(new EnemyCombatantAdapter(goblin3));
 
         // TODO: Demonstrate Singleton behavior
         BattleEngine engineA = BattleEngine.getInstance();
@@ -42,6 +50,27 @@ public class Main {
         System.out.println("Winner: " + result.getWinner());
         System.out.println("Rounds: " + result.getRounds());
         for (String line : result.getBattleLog()) {
+            System.out.println(line);
+        }
+
+        System.out.println("\n=== Edge Case Test: Hero Death Scenario ===\n");
+
+        Warrior weakWarrior = new Warrior("Arthas");
+        Goblin strongGoblin1 = new Goblin();
+        Goblin strongGoblin2 = new Goblin();
+
+        List<Combatant> singleHero = new ArrayList<>();
+        singleHero.add(new HeroCombatantAdapter(weakWarrior));
+
+        List<Combatant> multipleEnemies = new ArrayList<>();
+        multipleEnemies.add(new EnemyCombatantAdapter(strongGoblin1));
+        multipleEnemies.add(new EnemyCombatantAdapter(strongGoblin2));
+
+        EncounterResult result2 = engineA.runEncounter(singleHero, multipleEnemies);
+
+        System.out.println("Winner: " + result2.getWinner());
+        System.out.println("Rounds: " + result2.getRounds());
+        for (String line : result2.getBattleLog()) {
             System.out.println(line);
         }
 
